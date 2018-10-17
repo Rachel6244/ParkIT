@@ -1,15 +1,38 @@
 # ParkIT
 The Number One Parking Application in Ireland!
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-searchbar (input)="getItems($event)"></ion-searchbar>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{ item }}
-    </ion-item>
-  </ion-list>
-</ion-content>
+
+import { ActionSheetController } from 'ionic-angular';
+
+export class MyPage {
+
+  constructor(public actionSheetCtrl: ActionSheetController) { }
+
+  presentActionSheet() {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Modify your album',
+      buttons: [
+        {
+          text: 'Destructive',
+          role: 'destructive',
+          handler: () => {
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Archive',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+}
+
